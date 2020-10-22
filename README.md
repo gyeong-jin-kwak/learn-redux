@@ -11,3 +11,41 @@
     
 ## 추가한 모듈
 * yarn add redux
+
+## 리듀서 해석
+```
+function reducer(state = initialState, action ){
+    switch (action.type){
+        case INCREASE:
+            return {
+                ...state,
+                counter: state.counter + 1
+            }
+        case DECREASE:
+            return {
+                ...state,
+                counter: state.counter - 1
+            }
+        case CHANGE_TEXT:
+            return {
+                ...state,
+                text: action.text
+            }
+        case ADD_TO_LIST:
+            return {
+                ...state,
+                list: state.list.concat(action.item)
+            }
+        default:
+            return state;
+    }
+}
+```
+* ...state 스테이트 값을 복제해서 그 state 값에 1을 더함
+* 배열에 추가할 때에는 push 대신 concat 을 사용한다.
+
+```
+window.store = store
+store.dispatch({type:'INCREASE'})
+```
+* console 창에서 dispatch 해볼 수 있다. 
