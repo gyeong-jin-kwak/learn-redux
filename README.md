@@ -11,6 +11,7 @@
     
 ## 추가한 모듈
 * yarn add redux
+* yarn add react-redux
 
 ## 리듀서 해석
 ```
