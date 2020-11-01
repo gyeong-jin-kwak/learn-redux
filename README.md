@@ -12,6 +12,10 @@
 ## 추가한 모듈
 * yarn add redux
 * yarn add react-redux
+* yarn add redux-devtools-extension
+
+## 추가한 확장프로그램
+Redux DevTools
 
 ## 리듀서 해석
 ```
@@ -47,6 +51,33 @@ function reducer(state = initialState, action ){
 
 ```
 window.store = store
+* index.js 에 provider 사용
 store.dispatch({type:'INCREASE'})
 ```
 * console 창에서 dispatch 해볼 수 있다. 
+
+```
+* components폴더/ presentational component 는 값을 props에서 받아와서 사용하는 component다.
+* containers폴더/ 리덕스의 액션을 dispatch 하는 함수
+
+관심사를 서로 분리 할 수 있고 presentation component의 재사용률이 높아진다.
+```
+ 
+
+* 상태를 조회할 때는 리덕스의 { useSelector }를 사용한다.
+
+## err 해결과정
+* Error: Objects are not valid as a React child
+    * props를 잘 받아오지 못하는 문제 ({}) 으로 해결
+* Error: Too many re-renders. React limits the number of renders to prevent an infinite loop.
+    * 계속 렌더링 되는 문제  = () => {} 로 해결
+* 동작되지 않음
+    * type에 '' 따움표 붙이면 안됨
+    
+## Devtool 사용하기 
+```
+index.js
+import { composeWithDevTools } from 'redux-devtools-extension';
+const store = createStore(rootReducer, composeWithDevTools());
+두번째 인자로 넣어줌
+```

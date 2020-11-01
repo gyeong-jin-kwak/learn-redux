@@ -4,9 +4,9 @@ const INCREASE = 'counter/INCREASE';
 const DECREASE = 'counter/DECREASE';
 
 /* Action 생성함수 작성 */
-export const setDiff = diff => ({ type: 'SET_DIFF', diff });
-export const increase = () => ({ type: 'INCREASE' });
-export const decrease = () => ({ type: 'DECREASE' });
+export const setDiff = diff => ({ type: SET_DIFF, diff });
+export const increase = () => ({ type: INCREASE });
+export const decrease = () => ({ type: DECREASE });
 
 /* 모듈의 초기상태 작성 */
 const initialState = {
