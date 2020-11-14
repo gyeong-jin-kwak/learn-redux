@@ -88,3 +88,40 @@ const store = createStore(rootReducer, composeWithDevTools());
 ```
 const onCreate = useCallback(text => dispatch( addTodo(text) ), [dispatch]);
 ```
+
+## react.memo 최적화 하기 ( 속도를 더 빠르 )
+component를 react.memo로 감싸주기
+사용하지 않는 component 렌더링 방지
+
+## 최적화 하기
+```
+    const { number, diff } = useSelector(state => ({
+        number: state.counter.number,
+        diff: state.counter.diff
+    }));
+```
+계속 새로운 객체를 만들기 때문에 사용하지 않을때에도 렌더링이 된다. 해결 방법 두가지
+두가지 모두 성능은 거기서 거기다. 업데이트가 자주 되지않으면 굳이 최적화를 해주지 않아도 괜찮다. 
+1. useSelector를 여러번 사용 ( 하나의 상태만 불러오도록 하는것 )
+```
+    const { number } = useSelector(state => state.counter.number);
+    const { diff } = useSelector(state => state.counter.diff);
+```
+
+2. equalityFn: useSelector 이전 상태와 다음 상태를 비교할 수 있는 함수를 만듦
+    2-1. ShallowEqual
+```
+    const { number, diff } = useSelector(state => ({
+        number: state.counter.number,
+        diff: state.counter.diff
+    }),
+    (left, right) => {
+        return left.diff===right.diff && left.number===right.number
+        }
+    );
+
+    const { number, diff } = useSelector(state => ({
+            number: state.counter.number,
+            diff: state.counter.diff
+    }), shallowEqual);
+```
