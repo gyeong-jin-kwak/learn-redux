@@ -81,3 +81,10 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 const store = createStore(rootReducer, composeWithDevTools());
 두번째 인자로 넣어줌
 ```
+
+## useState, useCallback
+* useState: 꼭 리덕스에서 관리해주지 않아도 된다. 그 파일 안에서 관리해서 사용할 수 있다.
+* useCallback: 항상 새로 만들지 않고 재사용 해줄 수 있도록 최적화해준다.
+```
+const onCreate = useCallback(text => dispatch( addTodo(text) ), [dispatch]);
+```
